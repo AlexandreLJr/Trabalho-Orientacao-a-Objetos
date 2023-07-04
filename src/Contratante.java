@@ -1,5 +1,5 @@
 public class Contratante {
-  int retornoContratante;
+  private int retornoContratante;
 
   public void valorDoContratante(int retornoContratante, float valorAcesso){
 
@@ -12,4 +12,14 @@ public class Contratante {
   public void imprimir(){
     
   }
+
+public int getRetornoContratante() {
+	return retornoContratante;
+}
+
+public void setRetornoContratante(int retornoContratante) {
+	this.retornoContratante = retornoContratante;
+}
+  
+  
 }

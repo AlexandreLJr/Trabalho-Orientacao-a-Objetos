@@ -16,7 +16,7 @@ public abstract class Estacionamento {
   public Estacionamento(int valorFracao, int valorHoraCheia, int valorDiariaNoturna, int valorAcessoMensalista,
 		int valorAcessoEvento, DateFormat horarioFuncionamento) {
 	
-	this.valorFracao = valorFracao;
+	this.valorFracao = 10;
 	this.valorHoraCheia = valorHoraCheia;
 	this.valorDiariaNoturna = valorDiariaNoturna;
 	this.valorAcessoMensalista = valorAcessoMensalista;

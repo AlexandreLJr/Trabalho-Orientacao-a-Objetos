@@ -7,6 +7,10 @@ public class Acesso {
   DateFormat horaEntrada;
   DateFormat horaSaida;
   
+public Acesso() {
+	  
+  }
+  
   public Acesso(Estacionamento estacionamento, int tipoAcesso, String placa, DateFormat horaEntrada,
 		DateFormat horaSaida) {
 	super();

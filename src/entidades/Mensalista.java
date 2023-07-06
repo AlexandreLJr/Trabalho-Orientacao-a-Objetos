@@ -4,22 +4,20 @@ import java.time.LocalDate;
 
 public class Mensalista extends Acesso {
 
-	private float valorMensal;
+	private double valorMensal;
 	
-	public Mensalista() {
-	}
-	
+
 	public Mensalista(Estacionamento estacionamento, String placa, LocalDate horaEntrada, LocalDate horaSaida,
-			float valorMensal) {
+			double valorMensal) {
 		super(estacionamento, placa, horaEntrada, horaSaida);
 		this.valorMensal = valorMensal;
 	}
 
-	public float getValorMensal() {
+	public double getValorMensal() {
 		return valorMensal;
 	}
 
-	public void setValorMensal(float valorMensal) {
+	public void setValorMensal(double valorMensal) {
 		this.valorMensal = valorMensal;
 	}
 
@@ -28,5 +26,10 @@ public class Mensalista extends Acesso {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	public String toString() {
+		return "Estacionamento: " + getEstacionamento() + ", Placa: " + getPlaca() + "Hora entrada: " + getHoraEntrada() 
+		+ "hora saida: " + getHoraSaida() + "Valor Mensal: " + valorMensal ; 
+	}
+	
 }

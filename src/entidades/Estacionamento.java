@@ -7,10 +7,7 @@ public class Estacionamento {
 	private int id;
 	private LocalDate horarioFuncionamento;
 	private int capacidade;
-	
-	public Estacionamento() {
-	}
-	
+
 	public Estacionamento(int id, LocalDate horarioFuncionamento, int capacidade) {
 		super();
 		this.id = id;
@@ -44,6 +41,10 @@ public class Estacionamento {
 	
 	public boolean calcularCapacidade(int capacidade) {
 		return true;
+	}
+	
+	public String toString() {
+		return "id: " + id + "horariofuncionamento: " + horarioFuncionamento  + ", capacidade: " + capacidade;
 	}
 	
 }

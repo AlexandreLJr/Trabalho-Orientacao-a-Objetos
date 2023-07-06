@@ -7,6 +7,7 @@ public class Acesso {
   DateFormat horaEntrada;
   DateFormat horaSaida;
   
+<<<<<<< HEAD
 public Acesso() {
 	  
   }
@@ -22,6 +23,9 @@ public Acesso() {
 }
 
 public void valorAcesso() {
+=======
+  public void valorAcesso() {
+>>>>>>> parent of 3a056ae (gets, sets implementados, classe estacionamento e metodos abstratos)
     
   }
 
@@ -44,47 +48,4 @@ public void valorAcesso() {
   public void imprimir(){
     
   }
-
-public Estacionamento getEstacionamento() {
-	return estacionamento;
-}
-
-public void setEstacionamento(Estacionamento estacionamento) {
-	this.estacionamento = estacionamento;
-}
-
-public int getTipoAcesso() {
-	return tipoAcesso;
-}
-
-public void setTipoAcesso(int tipoAcesso) {
-	this.tipoAcesso = tipoAcesso;
-}
-
-public String getPlaca() {
-	return placa;
-}
-
-public void setPlaca(String placa) {
-	this.placa = placa;
-}
-
-public DateFormat getHoraEntrada() {
-	return horaEntrada;
-}
-
-public void setHoraEntrada(DateFormat horaEntrada) {
-	this.horaEntrada = horaEntrada;
-}
-
-public DateFormat getHoraSaida() {
-	return horaSaida;
-}
-
-public void setHoraSaida(DateFormat horaSaida) {
-	this.horaSaida = horaSaida;
-}
-  
-  
-  
 }

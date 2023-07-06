@@ -1,5 +1,6 @@
 import java.text.DateFormat;
 
+<<<<<<< HEAD
 public abstract class Estacionamento {
 	
   private int valorFracao;
@@ -23,69 +24,22 @@ public abstract class Estacionamento {
 	this.valorAcessoEvento = valorAcessoEvento;
 	this.horarioFuncionamento = horarioFuncionamento;
 }
+=======
+public class Estacionamento {
+  int valorFracao;
+  int valorHoraCheia;
+  int valorDiariaNoturna;
+  int valorAcessoMensalista;
+  int valorAcessoEvento;
+  DateFormat horarioFuncionamento;
+>>>>>>> parent of 3a056ae (gets, sets implementados, classe estacionamento e metodos abstratos)
 
-
-public void valoresEstacionamento() {
-	  System.out.println("Valor fracao:  " + valorFracao);
-	  System.out.println("Valor hora cheia:  " + valorHoraCheia);
-	  System.out.println("Valor diaria noturna:  " + valorDiariaNoturna);
-	  System.out.println("Valor acesso mensalista:  " + valorAcessoMensalista);
-	  System.out.println("Valor acesso evento:  " + valorAcessoEvento);
-	  System.out.println("Valor horario funcionamento:  " + horarioFuncionamento);
-	  
+  public boolean calculaCapacidade(int capacidade) {
+    return true;
   }
 
-  public abstract boolean calculaCapacidade(int capacidade);
+  public String imprimir() {
 
-  public abstract void imprimir();
-  
-  
-  public int getValorFracao() {
-      return valorFracao;
+    return "Teste";
   }
-
-  public void setValorFracao(int valorFracao) {
-      this.valorFracao = valorFracao;
-  }
-
-public int getValorHoraCheia() {
-	return valorHoraCheia;
-}
-
-public void setValorHoraCheia(int valorHoraCheia) {
-	this.valorHoraCheia = valorHoraCheia;
-}
-
-public int getValorDiariaNoturna() {
-	return valorDiariaNoturna;
-}
-
-public void setValorDiariaNoturna(int valorDiariaNoturna) {
-	this.valorDiariaNoturna = valorDiariaNoturna;
-}
-
-public int getValorAcessoMensalista() {
-	return valorAcessoMensalista;
-}
-
-public void setValorAcessoMensalista(int valorAcessoMensalista) {
-	this.valorAcessoMensalista = valorAcessoMensalista;
-}
-
-public int getValorAcessoEvento() {
-	return valorAcessoEvento;
-}
-
-public void setValorAcessoEvento(int valorAcessoEvento) {
-	this.valorAcessoEvento = valorAcessoEvento;
-}
-
-public DateFormat getHorarioFuncionamento() {
-	return horarioFuncionamento;
-}
-
-public void setHorarioFuncionamento(DateFormat horarioFuncionamento) {
-	this.horarioFuncionamento = horarioFuncionamento;
-}
-  
 }

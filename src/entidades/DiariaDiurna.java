@@ -25,8 +25,15 @@ public class DiariaDiurna extends Acesso {
 
 	@Override
 	public float calcularValor() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		/*Acesso por diárias diurnas: sempre que o acesso do veículo durar mais de 9 horas,
+		cobra-se um único valor relativo à diária do estacionamento. O valor da diária é estabelecido como um valor fixo em Reais (R$).*/
+		
+		//calculaHora();
+		
+		int saida = calculaHora();
+		
+		return saida;
 	}
 
 }

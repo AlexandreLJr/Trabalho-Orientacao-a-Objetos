@@ -1,10 +1,17 @@
 package programa;
 
+import entidades.DiariaDiurna;
+
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		DiariaDiurna diariaDiurna = new DiariaDiurna();
+		
+		diariaDiurna.calcularValor();
+		
+		
 	}
+
 
 }

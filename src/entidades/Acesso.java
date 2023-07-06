@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.Scanner;
 import java.time.LocalDate;
 
 public abstract class Acesso {
@@ -20,7 +21,36 @@ public abstract class Acesso {
 		this.horaSaida = horaSaida;
 	}
 	
+	//-------------------------------------------------------------------------------------
 	
+	public int calculaHora() {
+		
+		   int tempoTotal;
+			
+		    Scanner scanner = new Scanner(System.in);
+		    System.out.println("Hora de entrada: ");
+		    int horaEntradaScanner = scanner.nextInt();          
+	            
+		    System.out.println("Hora de saida: ");
+		    int horaSaidaScanner = scanner.nextInt();
+	           
+	            
+		    if((horaSaidaScanner) - (horaEntradaScanner) < 0) {
+		        tempoTotal = (horaSaidaScanner - horaEntradaScanner) + 24;
+	                
+	                System.out.println("Ficou por: "+tempoTotal+"h"); 
+	                
+		    } else {
+		        tempoTotal = horaSaidaScanner - horaEntradaScanner;
+	                
+	                System.out.println("Ficou por: "+tempoTotal+"h");
+		    }
+	    
+	    return tempoTotal;
+	   
+	}
+
+	//-------------------------------------------------------------------------------------
 	
 	public Estacionamento getEstacionamento() {
 		return estacionamento;
@@ -54,7 +84,7 @@ public abstract class Acesso {
 		this.horaSaida = horaSaida;
 	}
 
-	public abstract float calcularValor();
+	public abstract float calcularValor();	
 	
 	
 }

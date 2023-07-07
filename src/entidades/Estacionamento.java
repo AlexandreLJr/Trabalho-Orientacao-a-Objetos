@@ -44,7 +44,7 @@ public class Estacionamento {
 	}
 	
 	public String toString() {
-		return "id: " + id + "horariofuncionamento: " + horarioFuncionamento  + ", capacidade: " + capacidade;
+		return "id: " + id + ", horariofuncionamento: " + horarioFuncionamento  + ", capacidade: " + capacidade;
 	}
 	
 }

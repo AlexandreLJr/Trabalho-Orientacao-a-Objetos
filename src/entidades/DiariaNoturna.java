@@ -5,14 +5,19 @@ import java.time.LocalDate;
 public class DiariaNoturna extends Acesso {
 
 	private float valorNoturno;
-	
-	public  DiariaNoturna() {
-	}
-	
-	public DiariaNoturna(Estacionamento estacionamento, String placa, LocalDate horaEntrada, LocalDate horaSaida,
-			float valorNoturno) {
-		super(estacionamento, placa, horaEntrada, horaSaida);
+	private int horaComecoNoturno;
+	private int minutoComecoNoturno;
+	private int horaTerminoNoturno;
+	private int minutoTerminoNoturno;
+
+	public DiariaNoturna(float valorNoturno, int horaComecoNoturno, int minutoComecoNoturno, int horaTerminoNoturno,
+			int minutoTerminoNoturno) {
+		super();
 		this.valorNoturno = valorNoturno;
+		this.horaComecoNoturno = horaComecoNoturno;
+		this.minutoComecoNoturno = minutoComecoNoturno;
+		this.horaTerminoNoturno = horaTerminoNoturno;
+		this.minutoTerminoNoturno = minutoTerminoNoturno;
 	}
 
 	public float getValorNoturno() {

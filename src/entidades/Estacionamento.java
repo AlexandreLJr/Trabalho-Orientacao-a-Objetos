@@ -1,17 +1,19 @@
 package entidades;
 
-import java.time.LocalDate;
 
 public class Estacionamento {
 	
 	private int id;
-	private LocalDate horarioFuncionamento;
+	private int horaAbertura;
+	private int horaFechamento;
 	private int capacidade;
+	private int countcapacidade = 0;
 
-	public Estacionamento(int id, LocalDate horarioFuncionamento, int capacidade) {
+	public Estacionamento(int id, int horaAbertura, int horaFechamento, int capacidade) {
 		super();
 		this.id = id;
-		this.horarioFuncionamento = horarioFuncionamento;
+		this.horaAbertura = horaAbertura;
+		this.horaFechamento= horaFechamento;
 		this.capacidade = capacidade;
 	}
 
@@ -23,12 +25,21 @@ public class Estacionamento {
 		this.id = id;
 	}
 
-	public LocalDate getHorarioFuncionamento() {
-		return horarioFuncionamento;
+
+	public int getHoraAbertura() {
+		return horaAbertura;
 	}
 
-	public void setHorarioFuncionamento(LocalDate horarioFuncionamento) {
-		this.horarioFuncionamento = horarioFuncionamento;
+	public void setHoraAbertura(int horaAbertura) {
+		this.horaAbertura = horaAbertura;
+	}
+
+	public int getHoraFechamento() {
+		return horaFechamento;
+	}
+
+	public void setHoraFechamento(int horaFechamento) {
+		this.horaFechamento = horaFechamento;
 	}
 
 	public int getCapacidade() {
@@ -39,12 +50,23 @@ public class Estacionamento {
 		this.capacidade = capacidade;
 	}
 	
-	public boolean calcularCapacidade(int capacidade) {
-		return true;
+	public boolean calcularCapacidade() {
+		int x = countcapacidade += 1;
+		if(x <= capacidade) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
+	
+		
+
+	
+	
 	public String toString() {
-		return "id: " + id + ", horariofuncionamento: " + horarioFuncionamento  + ", capacidade: " + capacidade;
+		return "id: " + id + ", horariofuncionamento: " + horaAbertura + " as " + horaFechamento  + ", capacidade: " + capacidade;
 	}
 	
 }

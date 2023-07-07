@@ -1,23 +1,17 @@
 package entidades;
 
-import java.time.LocalDate;
-
 public class DiariaNoturna extends Acesso {
 
 	private float valorNoturno;
-	private int horaComecoNoturno;
-	private int minutoComecoNoturno;
-	private int horaTerminoNoturno;
-	private int minutoTerminoNoturno;
+	
+	public DiariaNoturna() {
+		
+	}
 
-	public DiariaNoturna(float valorNoturno, int horaComecoNoturno, int minutoComecoNoturno, int horaTerminoNoturno,
-			int minutoTerminoNoturno) {
-		super();
+	public DiariaNoturna(Estacionamento estacionamento, String placa, int horaEntradaScanner, int minutoEntradaScanner,
+			int horaSaidaScanner, int minutoSaidaScanner, float valorNoturno) {
+		super(estacionamento, placa, horaEntradaScanner, minutoEntradaScanner, horaSaidaScanner, minutoSaidaScanner);
 		this.valorNoturno = valorNoturno;
-		this.horaComecoNoturno = horaComecoNoturno;
-		this.minutoComecoNoturno = minutoComecoNoturno;
-		this.horaTerminoNoturno = horaTerminoNoturno;
-		this.minutoTerminoNoturno = minutoTerminoNoturno;
 	}
 
 	public float getValorNoturno() {
@@ -31,7 +25,14 @@ public class DiariaNoturna extends Acesso {
 	@Override
 	public float calcularValor() {
 		// TODO Auto-generated method stub
-		return 0;
+		return valorNoturno;
+	}
+	
+	@Override
+	public String toString() {
+		return "Estacionamento: " + getEstacionamento() + "\nPlaca do veiculo: " + getPlaca() + "\nHorario de entrada: " 
+				+ getHoraEntradaScanner() + ":" + getMinutoEntradaScanner() + "\nHorario de Saida: " + getHoraSaidaScanner() 
+				+ ":" + getMinutoSaidaScanner() + "\nValor a pagar: " + valorNoturno + " - Diaria Noturna"; 
 	}
 
 }

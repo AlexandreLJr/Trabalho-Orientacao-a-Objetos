@@ -1,7 +1,5 @@
 package entidades;
 
-import java.time.LocalDate;
-
 public class Evento extends Acesso {
 
 	private String evento;
@@ -10,7 +8,6 @@ public class Evento extends Acesso {
 	public Evento() {
 	}
 	
-
 	public Evento(Estacionamento estacionamento, String placa, int horaEntradaScanner, int minutoEntradaScanner,
 			int horaSaidaScanner, int minutoSaidaScanner, String evento, double valorEvento) {
 		super(estacionamento, placa, horaEntradaScanner, minutoEntradaScanner, horaSaidaScanner, minutoSaidaScanner);
@@ -44,7 +41,7 @@ public class Evento extends Acesso {
 	public String toString() {
 		return "Estacionamento: " + getEstacionamento() + "\nPlaca do veiculo: " + getPlaca() + "\nHorario de entrada: "
 				+ getHoraEntradaScanner() + ":" + getMinutoEntradaScanner() + "\nHorario de Saida: "
-				+ getHoraSaidaScanner() + ":" + getMinutoSaidaScanner() + "\nValor a pagar: " + calcularValor();
+				+ getHoraSaidaScanner() + ":" + getMinutoSaidaScanner() + "\nNome evento : " + getEvento() + "\nValor a pagar: " + calcularValor() + " - Acesso Evento";
 	}
 
 }

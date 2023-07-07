@@ -60,11 +60,6 @@ public class Estacionamento {
 		}
 	}
 	
-	
-		
-
-	
-	
 	public String toString() {
 		return "id: " + id + ", horariofuncionamento: " + horaAbertura + " as " + horaFechamento  + ", capacidade: " + capacidade;
 	}

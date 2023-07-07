@@ -27,6 +27,6 @@ public class Mensalista extends Acesso {
 	public String toString() {
 		return "Estacionamento: " + getEstacionamento() + "\nPlaca do veiculo: " + getPlaca() + "\nHorario de entrada: "
 				+ getHoraEntradaScanner() + ":" + getMinutoEntradaScanner() + "\nHorario de Saida: "
-				+ getHoraSaidaScanner() + ":" + getMinutoSaidaScanner() + "\nValor a pagar: " + calcularValor();
+				+ getHoraSaidaScanner() + ":" + getMinutoSaidaScanner() + "\nValor a pagar: " + calcularValor() + " - Valor Mensalista" ;
 	}
 }

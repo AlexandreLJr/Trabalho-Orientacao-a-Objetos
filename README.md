@@ -3,10 +3,10 @@ Repositorio do grupo de Orientação a Objetos - prof. Andre Lanna
 https://app.diagrams.net/#G1QiY6X73ix1tshsH7dt-HCZxRaBLKLEl1 
 
 Integrantes do grupo :
-Alexandre Lema Xavier Júnior - 202015868
-Felipe das Neves Freire - 202046102
-Vinícius Borba Camacho Nonato - 211030273
-Vitor Gabriel Gonçalves Dias - 200032364
+Alexandre Lema Xavier Júnior - 202015868,
+Felipe das Neves Freire - 202046102,
+Vinícius Borba Camacho Nonato - 211030273,
+Vitor Gabriel Gonçalves Dias - 200032364,
 Vinicius Angelo de Brito Vieira - 190118059
 
 

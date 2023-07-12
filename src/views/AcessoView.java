@@ -12,10 +12,6 @@ public class AcessoView {
 
   Scanner sc = new Scanner(System.in);
 
-  AcessoControl acessoControl = new AcessoControl();
-
-  EstacionamentoControl estacionamentoControl = new EstacionamentoControl();
-
   public int lerIdEstacionamento() {
     System.out.println("Digite o id do estacionamento: ");
     return sc.nextInt();
@@ -42,11 +38,13 @@ public class AcessoView {
   }
 
   public String lerPlaca() {
+    sc.nextLine();
     System.out.println("Digite a placa do veiculo: ");
     return sc.nextLine();
   }
 
   public String lerEvento() {
+    sc.nextLine();
     System.out.println("Digite o nome do evento: ");
     return sc.nextLine();
   }
@@ -66,7 +64,7 @@ public class AcessoView {
     return sc.nextDouble();
   }
 
-  public void visualizarAcessos() {
+  public void visualizarAcessos(AcessoControl acessoControl) {
     for (Acesso acesso : acessoControl.getAcessos()) {
       System.out.println(acesso);
     }
@@ -76,7 +74,19 @@ public class AcessoView {
     System.out.println(acesso);
   }
 
-  public void exibirMenuAcessos() {
+  public int perguntaTipo() {
+    System.out.println("1 - Evento");
+    System.out.println("2 - Mensalista");
+    System.out.println("3 - Padrão");
+
+    System.out.println("Digite a opcao desejada: ");
+
+    int opcao2 = sc.nextInt();
+
+    return opcao2;
+  }
+
+  public void exibirMenuAcessos(EstacionamentoControl estacionamentoControl, AcessoControl acessoControl) {
     int opcao;
     System.out.println("1 - Cadastrar acesso");
     System.out.println("2 - Visualizar acessos");
@@ -96,79 +106,91 @@ public class AcessoView {
 
         int idEstacionamento = lerIdEstacionamento();
 
-        Estacionamento estacionamento = estacionamentoControl.buscarEstacionamento(idEstacionamento);
+        try {
+          Estacionamento estacionamento = estacionamentoControl.buscarEstacionamento(idEstacionamento);
 
-        int horaEntrada = lerHoraEntrada();
+          int horaEntrada = lerHoraEntrada();
 
-        int minutoEntrada = lerMinutoEntrada();
+          int minutoEntrada = lerMinutoEntrada();
 
-        int horaSaida = lerHoraSaida();
+          int horaSaida = lerHoraSaida();
 
-        int minutoSaida = lerMinutoSaida();
+          int minutoSaida = lerMinutoSaida();
+          
+          String placa = lerPlaca();
 
-        String placa = lerPlaca();
+          // Perguntar se é eventou ou mensalista
+          int opcao2 = perguntaTipo();
+          switch (opcao2) {
+            case 1:
+              try {
+                String evento = lerEvento();
 
-        // Perguntar se é eventou ou mensalista
+                double valorEvento = lerValorEvento();
 
-        System.out.println("1 - Evento");
-        System.out.println("2 - Mensalista");
+                String tipo = "evento";
+                Acesso novoAcesso = acessoControl.criarAcessoCompleto(estacionamento, placa, horaEntrada, minutoEntrada,
+                    horaSaida, minutoSaida, 0, valorEvento, 0, 0, 0, evento, tipo);
 
-        System.out.println("Digite a opcao desejada: ");
+                acessoControl.buscarAcesso(novoAcesso.getPlaca());
 
-        int opcao2 = sc.nextInt();
+                System.out.println("Acesso cadastrado com sucesso!");
 
-        switch (opcao2) {
-          case 1:
-            try {
-              String evento = lerEvento();
+                acessoControl.visualizarAcessos();
+              } catch (Exception e) {
 
-              double valorEvento = lerValorEvento();
+                e.getCause();
 
-              String tipo = "evento";
-              Acesso novoAcesso = acessoControl.criarAcessoCompleto(estacionamento, placa, horaEntrada, minutoEntrada,
-                  horaSaida, minutoSaida, 0, valorEvento, 0, 0, 0, evento, tipo);
+                System.out.println("Erro ao cadastrar acesso!");
 
-              acessoControl.buscarAcesso(novoAcesso.getPlaca());
+              }
 
-              System.out.println("Acesso cadastrado com sucesso!");
+              break;
+            case 2:
+              try {
+                int valorMensalista = lerValorMensalista();
+                int valorDiaria = 0;
+                int desconto = 0;
+                String tipo = "mensalista";
+                Acesso novoAcesso2 = acessoControl.criarAcessoCompleto(estacionamento, placa, horaEntrada,
+                    minutoEntrada,
+                    horaSaida, minutoSaida, valorMensalista, 0, 0, valorDiaria, desconto, "", tipo);
 
-              acessoControl.visualizarAcessos();
-            } catch (Exception e) {
+                acessoControl.buscarAcesso(novoAcesso2.getPlaca());
 
-              
-              e.getCause();
+                System.out.println("Acesso cadastrado com sucesso!");
 
-              System.out.println("Erro ao cadastrar acesso!");
-       
-            }
+                acessoControl.visualizarAcessos();
+              } catch (Exception e) {
+                // TODO: handle exception
+              }
+              break;
 
-            break;
-          case 2:
-            try {
-              int valorMensalista = lerValorMensalista();
+            case 3:
+              // Criacao de acesso por fração ou hora cheia
+
               int valorDiaria = 0;
               int desconto = 0;
-              String tipo = "mensalista";
-              Acesso novoAcesso2 = acessoControl.criarAcessoCompleto(estacionamento, placa, horaEntrada, minutoEntrada,
-                  horaSaida, minutoSaida, valorMensalista, 0, 0, valorDiaria, desconto, "", tipo);
+              String tipo = "padrao";
+              Acesso novoAcesso3 = acessoControl.criarAcessoCompleto(estacionamento, placa, horaEntrada, minutoEntrada,
+                  horaSaida, minutoSaida, 0, 0, 0, valorDiaria, desconto, "", tipo);
 
-              acessoControl.buscarAcesso(novoAcesso2.getPlaca());
+              acessoControl.buscarAcesso(novoAcesso3.getPlaca());
 
               System.out.println("Acesso cadastrado com sucesso!");
+              break;
 
-              acessoControl.visualizarAcessos();
-            } catch (Exception e) {
-              // TODO: handle exception
-            }
-            break;
-          default:
-            System.out.println("Opcao invalida!");
-            break;
+            default:
+              System.out.println("Opcao invalida!");
+              break;
+          }
+        } catch (Exception e) {
+
+          e.getCause();
         }
-
         break;
       case 2:
-        visualizarAcessos();
+        visualizarAcessos(acessoControl);
         break;
       case 3:
         String placa2 = lerPlaca();

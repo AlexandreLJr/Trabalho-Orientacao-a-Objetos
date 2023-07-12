@@ -6,7 +6,6 @@ public class EstacionamentoView {
 
   Scanner sc = new Scanner(System.in);
 
-  EstacionamentoControl estacionamentoControl = new EstacionamentoControl();
 
 
   public int lerIdEstacionamento() {
@@ -83,7 +82,7 @@ public class EstacionamentoView {
     return sc.nextInt();
   }
 
-  public void exibirMenuEstacionamentos() {
+  public void exibirMenuEstacionamentos(EstacionamentoControl estacionamentoControl) {
     int opcao;
 
     do {

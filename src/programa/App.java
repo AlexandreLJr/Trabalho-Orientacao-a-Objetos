@@ -15,6 +15,8 @@ import entidades.HoraCheia;
 import entidades.Mensalista;
 import views.AcessoView;
 import views.EstacionamentoView;
+import controller.AcessoControl;
+import controller.EstacionamentoControl;
 
 public class App {
 
@@ -25,12 +27,15 @@ public class App {
 		Locale.setDefault(Locale.US);
 
 		Scanner sc = new Scanner(System.in);
-
-		Estacionamento estacionamento = new Estacionamento(1,8,22,10);
 		
 		EstacionamentoView estacionamentoView = new EstacionamentoView();
 
 		AcessoView acessoView = new AcessoView();
+
+		EstacionamentoControl estacionamentoController = new EstacionamentoControl();
+
+		AcessoControl acessoController = new AcessoControl();
+
 
 		
 
@@ -48,13 +53,13 @@ public class App {
 
 			case 1:
 
-				estacionamentoView.exibirMenuEstacionamentos();
+				estacionamentoView.exibirMenuEstacionamentos(estacionamentoController);
 
 				break;
 
 			case 2:
 
-				acessoView.exibirMenuAcessos();
+				acessoView.exibirMenuAcessos(estacionamentoController,acessoController);
 
 				break;
 

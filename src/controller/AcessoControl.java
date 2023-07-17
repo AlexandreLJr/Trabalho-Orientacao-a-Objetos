@@ -21,8 +21,12 @@ public class AcessoControl {
   List<Acesso> acessos = new ArrayList<>();
 
   public Acesso criarAcessoEvento(Estacionamento estacionamento, String placa, int horaEntrada, int minutoEntrada,
-      int horaSaida, int minutoSaida, String evento, double valorEvento) throws IllegalArgumentException {
+      int horaSaida, int minutoSaida, String evento, double valorEvento)
+      throws IllegalArgumentException, ValorAcessoInvalidoException {
 
+    if (valorEvento <= 0 || horaEntrada > horaSaida) {
+      throw new ValorAcessoInvalidoException("Valor do acesso inválido");
+    }
     Acesso acesso = new Evento(estacionamento, placa, horaEntrada, minutoEntrada, horaSaida, minutoSaida, evento,
         valorEvento);
 
@@ -33,8 +37,11 @@ public class AcessoControl {
   }
 
   public Acesso criarAcessoMensalista(Estacionamento estacionamento, String placa, int horaEntrada, int minutoEntrada,
-      int horaSaida, int minutoSaida, double valorMensalista) throws IllegalArgumentException {
+      int horaSaida, int minutoSaida, double valorMensalista) throws IllegalArgumentException, ValorAcessoInvalidoException {
 
+    if (valorMensalista <= 0 || horaEntrada > horaSaida) { 
+      throw new ValorAcessoInvalidoException("Valor do acesso inválido");
+    }
     Acesso acesso = new Mensalista(estacionamento, placa, horaEntrada, minutoEntrada, horaSaida, minutoSaida,
         valorMensalista);
 
@@ -46,8 +53,11 @@ public class AcessoControl {
 
   public Acesso criarAcessoDiariaNoturna(Estacionamento estacionamento, String placa, int horaEntrada,
       int minutoEntrada,
-      int horaSaida, int minutoSaida, float valorNoturno) throws IllegalArgumentException {
+      int horaSaida, int minutoSaida, float valorNoturno) throws IllegalArgumentException, ValorAcessoInvalidoException {
 
+    if (valorNoturno <= 0 || horaEntrada > horaSaida) {
+      throw new ValorAcessoInvalidoException("Valor do acesso inválido");
+    }
     Acesso acesso = new DiariaNoturna(estacionamento, placa, horaEntrada, minutoEntrada, horaSaida, minutoSaida,
         valorNoturno);
 
@@ -58,7 +68,11 @@ public class AcessoControl {
   }
 
   public Acesso criarAcessoDiariaDiurna(Estacionamento estacionamento, String placa, int horaEntrada, int minutoEntrada,
-      int horaSaida, int minutoSaida, float valorDiaria) throws IllegalArgumentException {
+      int horaSaida, int minutoSaida, float valorDiaria) throws IllegalArgumentException, ValorAcessoInvalidoException {
+
+    if (valorDiaria <= 0 || horaEntrada > horaSaida) {
+      throw new ValorAcessoInvalidoException("Valor do acesso inválido");
+    }
 
     Acesso acesso = new DiariaDiurna(estacionamento, placa, horaEntrada, minutoEntrada, horaSaida, minutoSaida,
         valorDiaria);
@@ -70,8 +84,11 @@ public class AcessoControl {
   }
 
   public Acesso criarAcessoFracoes(Estacionamento estacionamento, String placa, int horaEntrada, int minutoEntrada,
-      int horaSaida, int minutoSaida, float frac, float tempo) throws IllegalArgumentException {
+      int horaSaida, int minutoSaida, float frac, float tempo) throws IllegalArgumentException, ValorAcessoInvalidoException {
 
+    if (frac <= 0 || horaEntrada > horaSaida) {
+      throw new ValorAcessoInvalidoException("Valor do acesso inválido");
+    }
     Acesso acesso = new Fracoes(estacionamento, placa, horaEntrada, minutoEntrada, horaSaida, minutoSaida, frac, tempo);
 
     acessos.add(acesso);
@@ -81,8 +98,11 @@ public class AcessoControl {
   }
 
   public Acesso criarAcessoHoraCheia(Estacionamento estacionamento, String placa, int horaEntrada, int minutoEntrada,
-      int horaSaida, int minutoSaida, float frac, float tempo, float desconto) throws IllegalArgumentException {
+      int horaSaida, int minutoSaida, float frac, float tempo, float desconto) throws IllegalArgumentException,ValorAcessoInvalidoException {
 
+      if (frac <= 0 || horaEntrada > horaSaida) {
+        throw new ValorAcessoInvalidoException("Valor do acesso inválido");
+      }
     Acesso acesso = new HoraCheia(estacionamento, placa, horaEntrada, minutoEntrada, horaSaida, minutoSaida, frac,
         tempo, desconto);
 
@@ -94,6 +114,9 @@ public class AcessoControl {
 
   public Acesso buscarAcesso(String placa) throws IllegalArgumentException {
 
+    if (placa == null || placa.trim().isEmpty() || placa.length() > 7 || placa.length() < 7) {
+      throw new IllegalArgumentException("Placa inválida");
+    }
     for (Acesso acesso : acessos) {
       if (acesso.getPlaca().equals(placa)) {
         return acesso;
@@ -110,6 +133,10 @@ public class AcessoControl {
   }
 
   public void visualizarAcessosEstacionamento(Estacionamento estacionamento) {
+
+    if(estacionamento == null ) {
+      throw new IllegalArgumentException("Estacionamento inválido");
+    }
     for (Acesso acesso : acessos) {
       if (acesso.getEstacionamento().getId() == estacionamento.getId()) {
         System.out.println(acesso);
@@ -122,6 +149,29 @@ public class AcessoControl {
   public Acesso editarAcesso(Acesso acesso, Estacionamento estacionamento, String placa, int horaEntrada,
       int minutoEntrada, int horaSaida, int minutoSaida) throws IllegalArgumentException {
 
+
+    if (acesso == null) {
+      throw new IllegalArgumentException("Acesso inválido");
+    }
+    if (estacionamento == null) {
+      throw new IllegalArgumentException("Estacionamento inválido");
+    }
+
+    if (placa == null || placa.trim().isEmpty() || placa.length() > 7 || placa.length() < 7) {
+      throw new IllegalArgumentException("Placa inválida");
+    }
+
+    if (horaEntrada < 0 || horaEntrada > 23) {
+      throw new IllegalArgumentException("Hora de entrada inválida");
+    }
+
+    if (minutoEntrada < 0 || minutoEntrada > 59) {
+      throw new IllegalArgumentException("Minuto de entrada inválido");
+    }
+
+    if (horaSaida < 0 || horaSaida > 23) {
+      throw new IllegalArgumentException("Hora de saída inválida");
+    }
     acesso.setEstacionamento(estacionamento);
     acesso.setPlaca(placa);
     acesso.setHoraEntradaScanner(horaEntrada);
@@ -135,9 +185,11 @@ public class AcessoControl {
   // Remover acesso
 
   public void removerAcesso(Acesso acesso) throws IllegalArgumentException {
+    if(acesso == null) {
+      throw new IllegalArgumentException("Acesso inválido");
+    }
     acessos.remove(acesso);
   }
-
 
   public List<Acesso> getAcessos() {
     return acessos;
@@ -147,20 +199,49 @@ public class AcessoControl {
       int horaSaida, int minutoSaida, int valorMensalista, double valorEvento, int valorFracao, int valorDiaria,
       int desconto, String descricao, String tipoAcesso)
       throws DescricaoEmBrancoException, ValorAcessoInvalidoException, IllegalArgumentException {
+        
 
     Acesso acesso = null;
 
+    if(estacionamento == null) {
+      throw new IllegalArgumentException("Estacionamento inválido");
+    }
+    if (placa == null || placa.trim().isEmpty() || placa.length() > 7 || placa.length() < 7) {
+      throw new IllegalArgumentException("Placa inválida");
+    }
+    if(horaEntrada < 0 || horaEntrada > 23) {
+      throw new IllegalArgumentException("Hora de entrada inválida");
+    }
+    if(minutoEntrada < 0 || minutoEntrada > 59) {
+      throw new IllegalArgumentException("Minuto de entrada inválido");
+    }
+    if(horaSaida < 0 || horaSaida > 23) {
+      throw new IllegalArgumentException("Hora de saída inválida");
+    }
+    
     if (tipoAcesso.equals("mensalista")) {
+
+      if(valorMensalista <= 0) {
+        throw new ValorAcessoInvalidoException("Valor do acesso inválido");
+      }
+
       acesso = this.criarAcessoMensalista(estacionamento, placa, horaEntrada, minutoEntrada, horaSaida, minutoSaida,
           valorMensalista);
     } else if (tipoAcesso.equals("evento")) {
-      if(descricao.isEmpty()){
+      
+      if (descricao.isEmpty() || descricao == null) {
         throw new DescricaoEmBrancoException("Descrição em branco");
       }
+
       acesso = this.criarAcessoEvento(estacionamento, placa, horaEntrada, minutoEntrada, horaSaida, minutoSaida,
           descricao,
           valorEvento);
     } else {
+
+      if (valorFracao <= 0 || valorDiaria <= 0) {
+        throw new ValorAcessoInvalidoException("Valor do acesso inválido");
+      }
+
       int tempo = calculaHora(horaEntrada, minutoEntrada, horaSaida, minutoSaida);
       if (tempo < 540) {
         if ((tempo / 15) < 4) {
@@ -179,12 +260,12 @@ public class AcessoControl {
       }
     }
 
-    if(acesso == null){
-      throw new ValorAcessoInvalidoException("Valor de acesso inválido");
+    if (acesso == null) {
+      throw new ValorAcessoInvalidoException("Erro ao criar acesso");
     }
 
-    if(acesso.calcularValor() < 0){
-      throw new ValorAcessoInvalidoException("Valor de acesso inválido");
+    if (acesso.calcularValor() < 0) {
+      throw new ValorAcessoInvalidoException("Erro ao calcular valor de acesso");
     }
 
     acessos.add(acesso);
@@ -193,26 +274,25 @@ public class AcessoControl {
 
   }
 
-  public void atualizarHoraEntrada(Acesso acessoUpdate, int horaEntrada){
+  public void atualizarHoraEntrada(Acesso acessoUpdate, int horaEntrada) {
     acessoUpdate.setHoraEntradaScanner(horaEntrada);
   }
 
-  public void atualizarMinutoEntrada(Acesso acessoUpdate, int minutoEntrada){
+  public void atualizarMinutoEntrada(Acesso acessoUpdate, int minutoEntrada) {
     acessoUpdate.setMinutoEntradaScanner(minutoEntrada);
   }
 
-  public void atualizarHoraSaida(Acesso acessoUpdate, int horaSaida){
+  public void atualizarHoraSaida(Acesso acessoUpdate, int horaSaida) {
     acessoUpdate.setHoraSaidaScanner(horaSaida);
   }
 
-  public void atualizarMinutoSaida(Acesso acessoUpdate, int minutoSaida){
+  public void atualizarMinutoSaida(Acesso acessoUpdate, int minutoSaida) {
     acessoUpdate.setMinutoSaidaScanner(minutoSaida);
   }
 
-  public void atualizarPlaca(Acesso acessoUpdate, String placa){
+  public void atualizarPlaca(Acesso acessoUpdate, String placa) {
     acessoUpdate.setPlaca(placa);
   }
-  
 
   public static int calculaHora(int horaEntradaScanner, int minutoEntradaScanner, int horaSaidaScanner,
       int minutoSaidaScanner) {

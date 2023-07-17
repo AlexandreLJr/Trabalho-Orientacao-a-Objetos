@@ -21,6 +21,22 @@ public class EstacionamentoControl {
   public Estacionamento criarEstacionamento(int id, int horaAbertura, int horaFechamento, int capacidade)
       throws IllegalArgumentException {
 
+    if (horaAbertura < 0 || horaAbertura > 23) {
+      throw new IllegalArgumentException("Hora de abertura inválida");
+    }
+
+    if (horaFechamento < 0 || horaFechamento > 23) {
+      throw new IllegalArgumentException("Hora de fechamento inválida");
+    }
+
+    if (capacidade < 0) {
+      throw new IllegalArgumentException("Capacidade inválida");
+    }
+
+    if (horaAbertura > horaFechamento) {
+      throw new IllegalArgumentException("Hora de abertura não pode ser maior que a hora de fechamento");
+    }
+
     Estacionamento estacionamento = new Estacionamento(id, horaAbertura, horaFechamento, capacidade);
 
     // Verificando se já existe um objeto com o mesmo id
@@ -38,6 +54,12 @@ public class EstacionamentoControl {
 
   public Estacionamento buscarEstacionamento(int id) throws IllegalArgumentException {
 
+    if (id < 0)
+      throw new IllegalArgumentException("Id inválido");
+
+    if (estacionamentos.isEmpty())
+      throw new IllegalArgumentException("Não existem estacionamentos cadastrados");
+
     for (Estacionamento estacionamento : estacionamentos) {
       if (estacionamento.getId() == id) {
         return estacionamento;
@@ -47,8 +69,7 @@ public class EstacionamentoControl {
     throw new IllegalArgumentException("Não existe um estacionamento com esse id");
   }
 
-
-  //Visualizar todos os estacionamentos e seus acessos
+  // Visualizar todos os estacionamentos e seus acessos
 
   public void visualizarEstacionamentos() {
     for (Estacionamento estacionamento : estacionamentos) {
@@ -60,6 +81,7 @@ public class EstacionamentoControl {
 
   public void editarEstacionamento(int id, int horaAbertura, int horaFechamento, int capacidade)
       throws IllegalArgumentException {
+
 
     Estacionamento estacionamento = buscarEstacionamento(id);
 
@@ -74,11 +96,10 @@ public class EstacionamentoControl {
   public void removerEstacionamento(int id) throws IllegalArgumentException {
 
     Estacionamento estacionamento = buscarEstacionamento(id);
+    
 
     estacionamentos.remove(estacionamento);
 
   }
-
-
 
 }

@@ -116,7 +116,7 @@ public class AcessoView {
           int horaSaida = lerHoraSaida();
 
           int minutoSaida = lerMinutoSaida();
-          
+
           String placa = lerPlaca();
 
           // Perguntar se é eventou ou mensalista
@@ -143,6 +143,8 @@ public class AcessoView {
 
                 System.out.println("Erro ao cadastrar acesso!");
 
+              } finally {
+                System.out.println("Erro ao cadastrar acesso!");
               }
 
               break;
@@ -187,50 +189,82 @@ public class AcessoView {
         } catch (Exception e) {
 
           e.getCause();
+        } finally {
+          System.out.println("Erro ao cadastrar acesso!");
         }
+
         break;
       case 2:
-        visualizarAcessos(acessoControl);
+        try {
+          visualizarAcessos(acessoControl);
+        } catch (Exception e) {
+
+          e.getCause();
+        } finally {
+          System.out.println("Erro ao visualizar acessos!");
+        }
         break;
       case 3:
-        String placa2 = lerPlaca();
-        Acesso acesso = acessoControl.buscarAcesso(placa2);
+        try {
+          String placa2 = lerPlaca();
+          Acesso acesso = acessoControl.buscarAcesso(placa2);
+        } catch (Exception e) {
+
+          e.getCause();
+        } finally {
+          System.out.println("Erro ao visualizar acesso!");
+        }
         break;
       case 4:
-        String placa3 = lerPlaca();
-        Acesso acesso2 = acessoControl.buscarAcesso(placa3);
+        try {
+          String placa3 = lerPlaca();
+          Acesso acesso2 = acessoControl.buscarAcesso(placa3);
 
-        System.out.println("1 - Atualizar hora de entrada");
+          System.out.println("1 - Atualizar hora de entrada");
 
-        System.out.println("2 - Atualizar hora de saida");
+          System.out.println("2 - Atualizar hora de saida");
 
-        System.out.println("0 - Voltar");
+          System.out.println("0 - Voltar");
 
-        int opcao3 = sc.nextInt();
+          int opcao3 = sc.nextInt();
 
-        switch (opcao3) {
-          case 1:
-            int horaEntrada2 = lerHoraEntrada();
-            acessoControl.atualizarHoraEntrada(acesso2, horaEntrada2);
-            break;
-          case 2:
-            int horaSaida2 = lerHoraSaida();
-            acessoControl.atualizarHoraSaida(acesso2, horaSaida2);
-            break;
+          switch (opcao3) {
+            case 1:
+              int horaEntrada2 = lerHoraEntrada();
+              acessoControl.atualizarHoraEntrada(acesso2, horaEntrada2);
+              break;
+            case 2:
+              int horaSaida2 = lerHoraSaida();
+              acessoControl.atualizarHoraSaida(acesso2, horaSaida2);
+              break;
 
-          case 0:
-            System.out.println("Voltando!");
-            break;
-          default:
-            System.out.println("Opcao invalida!");
-            break;
+            case 0:
+              System.out.println("Voltando!");
+              break;
+            default:
+              System.out.println("Opcao invalida!");
+              break;
+          }
+        } catch (Exception e) {
+
+          e.getCause();
+        } finally {
+          System.out.println("Erro ao atualizar acesso!");
         }
 
         break;
       case 5:
-        String placa4 = lerPlaca();
-        Acesso acesso3 = acessoControl.buscarAcesso(placa4);
-        acessoControl.removerAcesso(acesso3);
+        try {
+          String placa4 = lerPlaca();
+          Acesso acesso3 = acessoControl.buscarAcesso(placa4);
+          acessoControl.removerAcesso(acesso3);
+
+        } catch (Exception e) {
+          
+          e.getCause();
+        } finally {
+          System.out.println("Erro ao remover acesso!");
+        }
         break;
       case 0:
         break;
